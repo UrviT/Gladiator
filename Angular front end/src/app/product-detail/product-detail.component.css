@@ -1,0 +1,26 @@
+.card{
+    display:inline-block;
+    width: 98%;
+    /* align-content: center; */
+    padding: 15px;
+    margin-top: 3%;
+    margin-bottom: 0;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.15), 0 6px 15px 0 rgba(0,0,0,0.10) ;
+}
+
+.prod-particulars{
+    /* float: inline-end; */
+    float:none;
+    padding-left: 45%;
+    padding-right: 20%;
+}
+
+.product-image{
+    float: left;
+    /* border: 5px solid blue ; */
+}
+
+.payment-details{
+    padding-top: 10%;
+    text-align: center;    
+}

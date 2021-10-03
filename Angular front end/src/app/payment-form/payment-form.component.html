@@ -1,0 +1,87 @@
+<div class="container">
+    <div class='row'>
+        <div class='col-md-4'></div>
+        <div class='col-md-4'>
+            <script src='https://js.stripe.com/v2/' type='text/javascript'></script>
+
+            <div style="margin:0;padding:0;display:inline">
+                <input name="utf8" type="hidden" value="✓" />
+                <input name="_method" type="hidden" value="PUT" />
+                <input name="authenticity_token" type="hidden" value="qLZ9cScer7ZxqulsUWazw4x3cSEzv899SP/7ThPCOV8=" />
+            </div>
+            <div class='form-row'>
+                <div class='col-xs-6 form-group required'>
+                    <label class='control-label'>First Name</label>
+                    <input class='form-control' size='4' type='text' name={{FirstName}} id="FN" value="Hiteshi"
+                        disabled>
+
+                </div>
+                <div class='col-xs-6 form-group required'>
+                    <label class='control-label'>Last Name</label>
+                    <input class='form-control' size='4' type='text' name={{LastName}} required id="LN" value="Malviya"
+                        disabled>
+                </div>
+                <div class='col-xs-12 form-group required'>
+                    <label class='control-label'>Email ID</label>
+                    <input class='form-control' size='4' type='text' required name={{EmailId}} id="EmailId"
+                        value="hiteshi@email.com" disabled>
+                </div>
+                <div class='col-xs-12 form-group required'>
+                    <label class='control-label'>Mobile No.</label>
+                    <input class='form-control' size='4' type='text' required name={{MobileNo}} id="MobileNo"
+                        value="9998888777" disabled>
+                </div>
+            </div>
+            <div class='form-row'>
+                <div class='col-xs-12 form-group NextInstallment required'>
+                    <label class='control-label'>Bank</label>
+                    <input autocomplete='off' class='form-control card-number' size='20' type='text' disabled
+                        name={{Bank}} id="Bank" value="HDFC" disabled>
+                </div>
+            </div>
+            <div class='form-row'>
+                <div class='col-xs-12 form-group InstallmentAmt required'>
+                    <label class='control-label'>Product Name</label>
+                    <input autocomplete='off' class='form-control' size='4' type='text' required name={{ProductName}}
+                        id="ProductN" value="ABC Mouse" disabled>
+                </div>
+                <div class='col-xs-12 form-group Date required'>
+                    <label class='control-label'>Product Details</label>
+                    <input autocomplete='off' class='form-control' size='4' type='text' required name={{ProductDetails}}
+                        id="ProducD" value="Wireless" disabled>
+                </div>
+                <div class='col-xs-12 form-group Date required'>
+                    <label class='control-label'>Card Type</label>
+                    <input autocomplete='off' class='form-control' size='4' type='text' required name={{CardType}}
+                        id="CardT" value="Gold" disabled>
+                </div>
+                <div class='col-xs-12 form-group Date required'>
+                    <label class='control-label'>Installment Amount</label>
+                    <input autocomplete='off' class='form-control' size='4' type='text' required name={{InstallmentAmt}}
+                        id="InstallmentAmt" value="5000" disabled>
+                </div>
+                <div class='col-xs-12 form-group Date required'>
+                    <label class='control-label'>Next Installment </label>
+                    <input autocomplete='off' class='form-control' size='4' type='text' required
+                        name={{NextInstallment}} id="NextInstallment" value="6 " disabled>
+                </div>
+                <div class='form-row'>
+                    <div class='col-md-6 form-group'>
+                        <input type="checkbox" required> Confirm Details before submission
+                    </div>
+                    <div class='col-md-6 form-group'>
+                        <button (click)="Payment()" class='form-control btn btn-primary submit-button' type='submit'>Pay
+                            »</button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class='col-md-4'></div> -->
+            <div class="alert alert-success" role="alert">
+                {{AckMessage}}
+            </div>
+        </div>
+
+    </div>
+
+</div>

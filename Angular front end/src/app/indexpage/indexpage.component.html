@@ -1,0 +1,65 @@
+<!-- {{ProductList}} -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 py-3">
+            <h2 class="pb-2">Not a sale</h2>
+            <ngb-carousel *ngIf="ProductList">
+                <ng-template ngbSlide *ngFor="let event of ProductList">
+                    <div routerLink="Register">
+                        <img src="assets/images/{{event.ImgPath}}" alt="Random slide">
+                        <div style="width: 40%; text-align: right;" class="carousel-caption">
+                            <h3 style="color:black">{{ event.Pname }}</h3>
+                            <p style="color:black" [innerText]="event.Description"></p>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="slideshow-container" *ngFor="let item of ProductList">
+
+    <div class="mySlides fade">
+        <div class="numbertext">{{item.Id}} / {{ProductList.length}}</div>
+        <img src="assets/images/{{item.ImgPath}}" style="width:100%">
+        <div class="text">{{item.Pname}}</div>
+        <div class="text">{{item.Cost}}</div>
+    </div> -->
+
+<!-- <div class="mySlides fade">
+        <div class="numbertext">2 / 3</div>
+        <img src="assets/images/1.png" style="width:100%">
+        <div class="text">Caption Two</div>
+    </div>
+
+    <div class="mySlides fade">
+        <div class="numbertext">3 / 3</div>
+        <img src="assets/images/1.png" style="width:100%">
+        <div class="text">Caption Three</div>
+    </div> -->
+
+<!-- <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+</div>
+<br>
+
+<div style="text-align:center" *ngFor="let item of ProductList">
+    <span class="dot" onclick="currentSlide(item.Id)"></span> -->
+<!-- <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span> -->
+<!-- </div> -->
+
+
+<!-- <div *ngFor="let item of ProductList">
+    <form class="container">
+        <h4><b>Product Name:</b>{{item.Pname}}</h4>
+        <br>
+        <h4><b>Product Details:</b>{{item.Description}}</h4>
+        <br>
+        <h4><b>Cost:</b>{{item.Cost}}</h4>
+        <button class="button">Buy Now</button>
+    </form>
+</div> -->

@@ -1,0 +1,19 @@
+.card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    /* padding-top: 20px; */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.15), 0 6px 15px 0 rgba(0,0,0,0.10) ;
+}
+/* .card{
+    display:inline-block;
+    width: 40%;
+    align-content: center;
+    padding: 20px;
+    margin-top: 3%;
+} */
+/* .card:hover{
+    transform: scale(1.05,1.05);
+    transition-duration: 500ms;
+    transition-timing-function: ease-out;
+} */

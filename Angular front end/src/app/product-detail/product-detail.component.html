@@ -1,0 +1,71 @@
+<!-- navbar -->
+<!-- <div>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand" style="padding-left: 2%;" href="#">Company</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Products</a>
+                </li>
+                <li class="nav-item">
+                            <a class="nav-link" href="#">Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Pricing</a>
+                        </li>
+            </ul>
+            <a class="nav-link" style="margin-left: auto;margin-right: 10px;" href="#">Profile </a>
+             <span class="navbar-text">
+                        Navbar text with an inline element
+                    </span> 
+        </div>
+    </nav>
+</div> -->
+<!-- {{id}} -->
+
+
+<!-- <div *ngFor="let item of products" class="container"> -->
+<div class="container" style="padding: 30px;">
+    <a [routerLink]="['/Products']" style="color: white;">
+        <button class="btn btn-primary">Back</button>
+    </a>    
+    <div class="card">
+        <div class="product-image">
+            <img height="300px" width="300px" src="assets/images/{{SelectedProduct.ImgPath}}" alt="this product">
+        </div>
+        <!-- <i class="fa-solid fa-gift"></i> -->
+        <br>
+        <div class="prod-particulars">
+            {{SelectedProduct.Pname}} <br><br>
+            {{SelectedProduct.Description}} <br><br>
+            {{SelectedProduct.Cost}}<br><br>
+        </div>
+        <!-- <div style="clear: left;"></div> -->
+        <br><br>
+        <div class="payment-details">
+            <h5 style="color: brown;">EMI period</h5>
+            <!-- dropdown -->
+            <div>
+                <form action="">
+                    <select name="tenur" id="1" [(ngModel)]="tenure">
+                        <option value="3">3 months</option>
+                        <option value="6">6 months</option>
+                        <option value="9">9 months</option>
+                        <option value="12">12 months</option>
+                    </select>
+                </form>
+            </div>
+            <!-- <br> -->
+            <h5 style="text-align: center;">EMI starts at {{SelectedProduct.Cost/tenure | number:'.2-3'}}</h5>
+            <div>
+                <button type="button" (click)="paymentRedirect(id,SelectedProduct.Cost/tenure)" class="btn btn-success">Pay now</button>
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+{{tenure}}
