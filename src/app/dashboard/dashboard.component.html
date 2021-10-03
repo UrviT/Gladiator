@@ -58,16 +58,18 @@
     <div class="card bg-light text-light ml-5 mt-3 mr-5 mb-3">
       <div *ngFor="let i of trans">
         <div *ngIf="i.Tenure>=1">
-        <div *ngFor="let j of products">
-          <div *ngIf="i.UserId==idcard && i.ProductId==j.Id">
-            <div class="card-body">
-              <p class="card-text" style="font-size: 22px;">Product Name : {{j.Pname}}</p>
-              <p class="card-text" style="font-size: 22px;">Amount : {{j.Cost}}</p>
-              <p class="card-text" style="font-size: 22px;">Paid : {{i.AmountPaid}}</p>
-              <p class="card-text" style="font-size: 22px;">Balance : {{j.Cost-i.AmountPaid}} </p>
+          <div *ngFor="let j of products">
+            <div *ngIf="i.UserId==idcard && i.ProductId==j.Id">
+              <div class="card-body">
+                <p class="card-text" style="font-size: 22px;">Product Name : {{j.Pname}}</p>
+                <p class="card-text" style="font-size: 22px;">Amount : {{j.Cost}}</p>
+                <p class="card-text" style="font-size: 22px;">Paid : {{i.AmountPaid}}</p>
+                <p class="card-text" style="font-size: 22px;">Balance : {{j.Cost-i.AmountPaid}} </p>
+                <button class="btn btn-primary" (click)="payInstallment(i.Id,j.Cost,idcard,i.Tenure-1)">Pay
+                  Installment</button>
+              </div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>

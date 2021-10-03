@@ -111,4 +111,7 @@ export class DashboardComponent implements OnInit {
       this.service.ServiceMethodPutUser(id,this.user2).subscribe();
     // }
   }
+
+  payInstallment(id:any,cost:any,idcard:any,tenure:any){
+  }
 }
