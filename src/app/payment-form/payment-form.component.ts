@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+// import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../payment.service';
@@ -40,21 +40,22 @@ export class PaymentFormComponent implements OnInit {
   Amount !: number
   Tenure !: number
 
-  date:any;
-  latestDate:any;
+  // date:any;
+  // latestDate:any;
     
-  constructor(private userService:UserService,private cardService:CardService, public datepipe:DatePipe,
+  constructor(private userService:UserService,private cardService:CardService,
     private service:PaymentService, private service2:ProductssService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
       this.ProdID,this.Amount, this.Tenure = this.service2.ServiceMethodGetTransactionDetails();
+      // this.service2.ServiceMethodGetTransactionDetails().
       this.thisUser = sessionStorage.getItem('UserId');
       this.getDetails()
-      this.dateNow()
+      // this.dateNow()
   }
 
   Payment(){
-    this.dateNow();
+    // this.dateNow();
     var PaymentObject = {
       TransactionID : 0,
       UserID : sessionStorage.getItem('UserId') ,
@@ -62,7 +63,7 @@ export class PaymentFormComponent implements OnInit {
       Tenure: this.Tenure,
       InstallmentAmt: this.Amount,
       NextInstallment: '',
-      Timestamp: this.latestDate 
+      Timestamp: new Date() 
     }
   
     this.service.ServiceMethodCustomerPayment(PaymentObject).subscribe();
@@ -90,8 +91,8 @@ export class PaymentFormComponent implements OnInit {
     });
   }
 
-  dateNow(){
-    this.date=new Date();
-    this.latestDate =this.datepipe.transform(this.date, 'yyyy-MM-dd');   
-  }
+  // dateNow(){
+  //   this.date=new Date();
+  //   this.latestDate =this.datepipe.transform(this.date, 'yyyy-MM-dd');   
+  // }
 }
