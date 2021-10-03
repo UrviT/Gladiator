@@ -10,6 +10,7 @@ import { Products } from '../Model/Products';
 import { TransactionHistories } from '../Model/TransactionHistories';
 import { CardDetails } from '../Model/CardDetails';
 import { Users } from '../Model/Users';
+import { ProductssService } from '../productss.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -31,7 +32,7 @@ export class DashboardComponent implements OnInit {
   showTableStatus = 1;
 
   constructor(public service:UserService , public router : Router ,public cardserv:CardService,
-    public transerv : TransactionsService , public prodservice:ProductService) { }
+    public transerv : TransactionsService, private prodServ:ProductssService , public prodservice:ProductService) { }
 
   ngOnInit(): void {
     this.getCards();
@@ -112,6 +113,8 @@ export class DashboardComponent implements OnInit {
     // }
   }
 
-  payInstallment(id:any,cost:any,idcard:any,tenure:any){
+  payInstallment(id:any,cost:any,tenure:any){
+    this.prodServ.ServiceMethodSetTransactionDetails(id,cost,tenure)
+    this.router.navigate(['Payment']);
   }
 }

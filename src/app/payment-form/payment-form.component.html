@@ -12,38 +12,35 @@
             <div class='form-row'>
                 <div class='col-xs-6 form-group required'>
                     <label class='control-label'>First Name</label>
-                    <input class='form-control' size='4' type='text' name={{FirstName}} id="FN" value="Hiteshi"
-                        disabled>
-
+                    <input class='form-control' size='4' type='text' [value]="FirstName" id="FN" disabled>
                 </div>
                 <div class='col-xs-6 form-group required'>
                     <label class='control-label'>Last Name</label>
-                    <input class='form-control' size='4' type='text' name={{LastName}} required id="LN" value="Malviya"
-                        disabled>
+                    <input class='form-control' size='4' type='text' required id="LN" [value]="LastName" disabled>
                 </div>
                 <div class='col-xs-12 form-group required'>
                     <label class='control-label'>Email ID</label>
-                    <input class='form-control' size='4' type='text' required name={{EmailId}} id="EmailId"
-                        value="hiteshi@email.com" disabled>
+                    <input class='form-control' size='4' type='text' required id="EmailId"
+                        [value]="EmailId" disabled>
                 </div>
                 <div class='col-xs-12 form-group required'>
                     <label class='control-label'>Mobile No.</label>
-                    <input class='form-control' size='4' type='text' required name={{MobileNo}} id="MobileNo"
-                        value="9998888777" disabled>
+                    <input class='form-control' size='4' type='text' required id="MobileNo"
+                        [value]="MobileNo" disabled>
                 </div>
             </div>
             <div class='form-row'>
                 <div class='col-xs-12 form-group NextInstallment required'>
                     <label class='control-label'>Bank</label>
                     <input autocomplete='off' class='form-control card-number' size='20' type='text' disabled
-                        name={{Bank}} id="Bank" value="HDFC" disabled>
+                    id="Bank" [value]="Bank" disabled>
                 </div>
             </div>
             <div class='form-row'>
                 <div class='col-xs-12 form-group InstallmentAmt required'>
                     <label class='control-label'>Product Name</label>
-                    <input autocomplete='off' class='form-control' size='4' type='text' required name={{ProductName}}
-                        id="ProductN" value="ABC Mouse" disabled>
+                    <input autocomplete='off' class='form-control' size='4' type='text' required
+                        id="ProductN" [value]="ProductName" disabled>
                 </div>
                 <!-- <div class='col-xs-12 form-group Date required'>
                     <label class='control-label'>Product Details</label>
@@ -52,13 +49,13 @@
                 </div> -->
                 <div class='col-xs-12 form-group Date required'>
                     <label class='control-label'>Card Type</label>
-                    <input autocomplete='off' class='form-control' size='4' type='text' required name={{CardType}}
-                        id="CardT" value="Gold" disabled>
+                    <input autocomplete='off' class='form-control' size='4' type='text' required
+                        id="CardT" [value]="CardType" disabled>
                 </div>
                 <div class='col-xs-12 form-group Date required'>
                     <label class='control-label'>Amount to be paid</label>
-                    <input autocomplete='off' class='form-control' size='4' type='text' required name={{InstallmentAmt}}
-                        id="InstallmentAmt" value="5000" disabled>
+                    <input autocomplete='off' class='form-control' size='4' type='text' required
+                        id="InstallmentAmt" [value]="InstallmentAmt" disabled>
                 </div>
                 <!-- <div class='col-xs-12 form-group Date required'>
                     <label class='control-label'>Next Installment </label>

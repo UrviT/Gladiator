@@ -65,7 +65,7 @@
                 <p class="card-text" style="font-size: 22px;">Amount : {{j.Cost}}</p>
                 <p class="card-text" style="font-size: 22px;">Paid : {{i.AmountPaid}}</p>
                 <p class="card-text" style="font-size: 22px;">Balance : {{j.Cost-i.AmountPaid}} </p>
-                <button class="btn btn-primary" (click)="payInstallment(i.Id,j.Cost,idcard,i.Tenure-1)">Pay
+                <button class="btn btn-primary" (click)="payInstallment(j.Id,j.Cost,i.Tenure-1)">Pay
                   Installment</button>
               </div>
             </div>
