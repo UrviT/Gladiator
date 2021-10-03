@@ -1,0 +1,23 @@
+<!-- HI -->
+<div *ngFor="let item of ProductList" class="container">
+    <!-- <div class="container" style="padding: 50px;"> -->
+    <div class="card">
+        <div class="product-image">
+            <img height="150px" width="150px" src="assets/images/{{item.ImgPath}}" alt="this product">
+        </div>
+        <!-- <i class="fa-solid fa-gift"></i> -->
+        <div class="prod-particulars">
+            {{item.Pname}} <br><br>
+            {{item.Description}} <br><br>
+            {{item.Cost}}<br><br>
+            <!-- {{item.Id}}<br><br> -->
+            <!-- <button (click)="BuyNow(item.ID);" type="button" class="btn btn-secondary">Buy now</button> -->
+            <a [routerLink]="['/ProductInfo', item.Id]">
+                <button type="button" class="btn btn-success">Buy now
+                </button>
+            </a>
+
+        </div>
+        <div style="clear: left;"></div>
+    </div>
+</div>

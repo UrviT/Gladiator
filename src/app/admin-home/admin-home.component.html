@@ -1,0 +1,49 @@
+{{user1 | json}}
+<table class="table table-hover table-bordered">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <!-- <th scope="col">Date of Birth</th> -->
+        <th scope="col">Email</th>
+        <th scope="col">Phone number</th>
+        <!-- <th scope="col">User Name</th> -->
+        <th scope="col">Address</th>
+        <!-- <th scope="col">Password</th> -->
+        <!-- <th scope="col">Card Type</th> -->
+        <th scope="col">Bank Name</th>
+        <!-- <th scope="col">Account No</th>
+        <th scope="col">IFSC Code</th> -->
+        <th scope="col">Activation status</th>
+        <th style="text-align: center;" colspan="2">Actions</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{user.Id}}</td>
+            <td>{{user.FirstName +" "+ user.LastName}}</td>
+            <!-- <td>{{user.dob}}</td> -->
+            <td>{{user.EmailId}}</td>
+            <td>{{user.PhoneNumber}}</td>
+            <!-- <td>{{user.user_name}}</td> -->
+            <td>{{user.Address}}</td>
+            <!-- <td>{{user.password}}</td> -->
+            <!-- <td>{{user.card_type}}</td> -->
+            <td>{{user.BankName}}</td>
+            <!-- <td>{{user.acc_no}}</td>
+            <td>{{user.ifsc_code}}</td> -->
+            <td>{{user.ActivationStatus}}</td>
+            <td [ngSwitch]="user.ActivationStatus">
+                <button *ngSwitchCase="0" disabled class="btn">Disabled</button>
+                <button *ngSwitchCase="1" (click)="activateUser(user.Id)" class="btn btn-warning">Activate</button>
+                <button *ngSwitchCase="2" disabled class="btn btn-success">Activated</button>
+                <button *ngSwitchDefault class="btn">Activation</button>
+            </td>
+            <!-- <td>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+      </td> -->
+            <td>
+                <!-- <button class="btn btn-danger" (click)="onDelete(user.user_id)">Delete</button> -->
+                <button (click)="deleteUser(user.Id)" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

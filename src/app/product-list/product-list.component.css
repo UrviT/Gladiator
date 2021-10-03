@@ -1,0 +1,18 @@
+.card{
+    display:inline-block;
+    width: 70%;
+    align-content: center;
+    padding: 20px;
+    margin-top: 3%;
+}
+
+.prod-particulars{
+    /* float: inline-end; */
+    float:none;
+    padding-left: 35%;
+}
+
+.product-image{
+    float: left;
+}
+
