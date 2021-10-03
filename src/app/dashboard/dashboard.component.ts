@@ -19,6 +19,7 @@ import { Users } from '../Model/Users';
 export class DashboardComponent implements OnInit {
 
   cards: CardDetails[] = [];
+  userCard: any={};
   users: Users[] = [];
   user2: any = {};  //Create the variables here
   status !: number;
@@ -33,8 +34,9 @@ export class DashboardComponent implements OnInit {
     public transerv : TransactionsService , public prodservice:ProductService) { }
 
   ngOnInit(): void {
-    this.getCard();
+    this.getCards();
     this.getUsers();
+    this.getCardById(this.idcard);
     this.getById(this.idcard);
     this.getProducts();
     this.getTransactions();
@@ -48,9 +50,15 @@ export class DashboardComponent implements OnInit {
   // }
 
   //Card
-  getCard() {
+  getCards() {
     this.cardserv.ServiceMethodGetCardDetails().subscribe(data => {
       this.cards = data;
+    })
+  }
+
+  getCardById(id:number){
+    this.cardserv.ServiceMethodGetCardDetail(id).subscribe(data=>{
+      this.userCard = data
     })
   }
 
@@ -63,11 +71,11 @@ export class DashboardComponent implements OnInit {
   }
   getById(id: number) {
     this.service.ServiceMethodGetUser(id).subscribe(data => {
-      alert("working");
       this.user2 = data;
       this.status = this.user2.ActivationStatus;
     }
     )
+    
   }
 
   //Product
@@ -97,9 +105,10 @@ export class DashboardComponent implements OnInit {
   }
 
   feePaid(id: number){
-    if(this.user2.UserId === id){
+    // if(this.user2.UserId == id){
+      alert("fee");
       this.user2.ActivationStatus = 1;
       this.service.ServiceMethodPutUser(id,this.user2).subscribe();
-    }
+    // }
   }
 }

@@ -21,4 +21,8 @@ export class CardService {
     return this.http.get(this.APIUrl+"/"+id);
   }
 
+  ServiceMethodDeleteCard(id:number):Observable<any>{
+    return this.http.delete(this.APIUrl+"/"+String(id));
+  }
+
 }

@@ -1,41 +1,49 @@
 <div>
   <div class="card">
-    <div class="card text-white bg-light ml-25" style="width: 26%;">
+    <div class="card text-dark bg-light ml-25" style="width: 26%;">
       <div class="card-body">
         <div *ngFor="let i of cards">
           <div *ngIf="i.UserId==idcard">
-            <p class="card-text"> CARD NUMBER : {{i.CardId}}</p>
+            <p class="card-text"> CARD NUMBER : {{idcard}}</p>
             <p class="card-text"> NAME : {{user2.FirstName}}</p>
-            <p class="card-text"> VALID TILL : </p>
+            <!-- <p class="card-text"> VALID TILL : </p> -->
             <p class="card-text"> CARD TYPE : {{i.Ctype}}</p>
           </div>
         </div>
       </div>
-      <div *ngIf="status==1;then thenBlk;else elseBlk"></div>
-      <ng-template #thenBlk>
-        <div class="card-footer bg-success border-success text-center">ACTIVATED </div>
-      </ng-template>
-      <ng-template #elseBlk>
-        <div class="card-footer bg-danger border-danger text-center">NOT YET ACTIVATED
-          <!-- <span class="tooltiptext">Pay joining fee to activate</span> -->
-        </div>
-      </ng-template>
+      <!-- <div *ngIf="status==1;then thenBlk;else elseBlk">
+        <ng-template #thenBlk> -->
+      <div *ngIf="status==1" class="card-footer bg-info border-info text-center">TO BE ACTIVATED </div>
+      <!-- </ng-template> -->
+      <!-- <ng-template #elseBlk> -->
+      <!-- <div *ngIf="status==0; then notactivated; else activated"></div> -->
+      <!-- <ng-template #notactivated> -->
+      <div *ngIf="status==0" class="card-footer bg-danger border-danger text-center">NOT YET ACTIVATED
+        <button (click)="feePaid(idcard)" class="btn btn-primary" style="width: 20%; align-self: center;">Pay Joining
+          fee</button>
+      </div>
+      <!-- </ng-template> -->
+      <!-- <ng-template #activated> -->
+      <div *ngIf="status==2" class="card-footer bg-success border-success text-center">ACTIVATED</div>
+      <!-- </ng-template> -->
+      <!-- </ng-template> -->
+      <!-- </div> -->
     </div>
-    <button (click)="feePaid(idcard)" class="btn btn-primary" style="width: 20%; align-self: center;">Pay Joining fee</button>
+
   </div>
-  <div class="card bg-light ml-5" style="width: 25%;color: white;">
+  <div class="card bg-light text-dark ml-5" style="width: 25%;">
     <div class="card-body">
       <div *ngFor="let i of cards">
         <span *ngIf="i.UserId==idcard">
           <span *ngIf="i.Ctype=='Gold'; then gold ;else titanium;"></span>
           <ng-template #gold>
-            <p class="card-text" style="font-size: 22px;">Total Credits : 45000</p>
-            <p class="card-text" style="font-size: 22px;">Credits Used : {{45000-i.CreditLeft}}</p>
+            <p class="card-text" style="font-size: 22px;">Total Credits : 50000</p>
+            <p class="card-text" style="font-size: 22px;">Credits Used : {{50000-i.CreditLeft}}</p>
             <p class="card-text" style="font-size: 22px;">Remaining Credits : {{i.CreditLeft}}</p>
           </ng-template>
           <ng-template #titanium>
-            <p class="card-text" style="font-size: 22px;">Total Credits : 60000</p>
-            <p class="card-text" style="font-size: 22px;">Credits Used : {{60000-i.CreditLeft}}</p>
+            <p class="card-text" style="font-size: 22px;">Total Credits : 100000</p>
+            <p class="card-text" style="font-size: 22px;">Credits Used : {{100000-i.CreditLeft}}</p>
             <p class="card-text" style="font-size: 22px;">Remaining Credits : {{i.CreditLeft}}</p>
           </ng-template>
         </span>
@@ -47,8 +55,9 @@
     <div class="card-header text-center">
       <h5>PRODUCTS PURCHASED</h5>
     </div>
-    <div class="card bg-dark ml-5 mt-3 mr-5 mb-3" style="color: white;">
+    <div class="card bg-light text-light ml-5 mt-3 mr-5 mb-3">
       <div *ngFor="let i of trans">
+        <div *ngIf="i.Tenure>=1">
         <div *ngFor="let j of products">
           <div *ngIf="i.UserId==idcard && i.ProductId==j.Id">
             <div class="card-body">
@@ -58,6 +67,7 @@
               <p class="card-text" style="font-size: 22px;">Balance : {{j.Cost-i.AmountPaid}} </p>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>

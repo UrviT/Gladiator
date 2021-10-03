@@ -41,8 +41,12 @@
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
       </td> -->
             <td>
+                <div *ngFor="let card of cards">
+                    <div *ngIf="card.UserId == user.Id">
+                        <button (click)="deleteUser(user.Id, card.Id)" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
                 <!-- <button class="btn btn-danger" (click)="onDelete(user.user_id)">Delete</button> -->
-                <button (click)="deleteUser(user.Id)" class="btn btn-danger">Delete</button>
             </td>
         </tr>
     </tbody>

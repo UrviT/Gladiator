@@ -25,7 +25,7 @@ export class UserService {
     return this.http.get(this.APIUrl);
   }
   ServiceMethodPutUser(id:number,userUpd:Users){
-    return this.http.put(`${this.APIUrl}/${id}`, this.formData);
+    return this.http.put(`${this.APIUrl}/${id}`,userUpd);
   }
   ServiceMethodGetUser(ID:number):Observable<any>{
     return this.http.get(this.APIUrl+"/"+ID);
