@@ -70,8 +70,14 @@
                         <input type="checkbox" required> Confirm Details before submission
                     </div>
                     <div class='col-md-6 form-group'>
-                        <button (click)="Payment()" class='form-control btn btn-primary submit-button' type='submit'>Pay
+                        <button *ngIf="postPut=='post'" (click)="Payment()" class='form-control btn btn-primary submit-button' type='submit'>Pay
                             »</button>
+                        <div *ngFor="let transaction of allTransactions">
+                            <div *ngIf="transaction.UserId==thisUser && transaction.ProductId==ProdID" ></div>
+                            <button *ngIf="postPut=='put'" (click)="PaymentUpdate(transaction.Id)" class='form-control btn btn-primary submit-button' type='submit'>Pay
+                                »</button>
+                        </div>
+                        
                     </div>
                 </div>
 

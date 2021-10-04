@@ -1,0 +1,33 @@
+<div class="topnav">
+    <div class="topnav-centered">
+        <h1 class="active">EMI-CARD</h1>
+    </div>
+    <div class="topnav-right">
+        <a href="register">Register</a>
+        <a href="path">Login</a>
+
+    </div>
+
+</div>
+
+<div class="container">
+    <h1 text-align="center"><b>Login</b></h1><br>
+    <label for="name" class="con">
+        <h4><b>UserName</b></h4>
+    </label><br>
+    <div class="cont">
+        <input type="text" class="" placeholder="Enter email id" name="EmailID" required [(ngModel)]="EmailID"><br>
+    </div>
+    <label for="Password" class="">
+        <h4><b>Password</b></h4>
+    </label><br>
+    <div class="cont">
+        <input type="password" placeholder="Enter Password" name="Password" required [(ngModel)]="Password"><br><br>
+        <button (click)="LoginUser()" class="btn btn-primary"> Register</button> <br><br><br>
+        <a routerLink="Register"><b>New User</b></a>
+        <a routerLink="ForgotPSWD"><b>Forgot Password</b></a>
+    </div>
+
+    <h1>{{message}}</h1>
+
+</div>

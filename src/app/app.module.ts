@@ -13,6 +13,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { IndexpageComponent } from './indexpage/indexpage.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
+import { LoginComponent } from './login/login.component';
+import { ForgotPSWDComponent } from './forgot-pswd/forgot-pswd.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
     AdminHomeComponent,
     RegistrationComponent,
     IndexpageComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    LoginComponent,
+    ForgotPSWDComponent
   ],
   imports: [
     BrowserModule,

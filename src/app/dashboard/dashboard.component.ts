@@ -114,7 +114,7 @@ export class DashboardComponent implements OnInit {
   }
 
   payInstallment(id:any,cost:any,tenure:any){
-    this.prodServ.ServiceMethodSetTransactionDetails(id,cost,tenure)
+    this.prodServ.ServiceMethodSetTransactionDetails('put',id,cost,tenure)
     this.router.navigate(['Payment']);
   }
 }

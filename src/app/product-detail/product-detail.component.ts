@@ -32,7 +32,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   paymentRedirect(prodID:number, amount:number){
-    this.service.ServiceMethodSetTransactionDetails(this.id,amount,this.tenure);
+    this.service.ServiceMethodSetTransactionDetails('post',this.id,amount,this.tenure);
     this.routing.navigateByUrl("/Payment");
   }
 }

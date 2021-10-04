@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../payment.service';
 import { ProductssService } from '../productss.service';
 import { CardService } from '../Service/card.service';
+import { TransactionsService } from '../Service/transactions.service';
 import { UserService } from '../Service/user.service';
 
 @Component({
@@ -39,34 +40,52 @@ export class PaymentFormComponent implements OnInit {
   ProdID !: number
   Amount !: number
   Tenure !: number
+  postPut !: string;
 
   // date:any;
   // latestDate:any;
+  allTransactions:any=[];
     
-  constructor(private userService:UserService,private cardService:CardService,
+  constructor(private userService:UserService,private cardService:CardService, private transServ:TransactionsService,
     private service:PaymentService, private service2:ProductssService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-      this.ProdID,this.Amount, this.Tenure = this.service2.ServiceMethodGetTransactionDetails();
+      this.postPut,this.ProdID,this.Amount,this.Tenure = this.service2.ServiceMethodGetTransactionDetails();
       // this.service2.ServiceMethodGetTransactionDetails().
       this.thisUser = sessionStorage.getItem('UserId');
       this.getDetails()
+      this.getTransactionDetails()
       // this.dateNow()
   }
 
   Payment(){
     // this.dateNow();
     var PaymentObject = {
-      TransactionID : 0,
-      UserID : sessionStorage.getItem('UserId') ,
-      ProductID: this.ProdID,
+      Id : 0,
+      UserId : Number(this.thisUser),
+      ProductId: this.ProdID,
       Tenure: this.Tenure,
-      InstallmentAmt: this.Amount,
-      NextInstallment: '',
-      Timestamp: new Date() 
+      AmountPaid: this.Amount,
+      NextDate: new Date(),
+      TimeStamp: new Date() 
     }
   
-    this.service.ServiceMethodCustomerPayment(PaymentObject).subscribe();
+    this.transServ.ServiceMethodPostTransactionDetails(PaymentObject).subscribe();
+    this.AckMessage="Payment Successfully Done";
+  }
+  PaymentUpdate(transId: number){
+    // this.dateNow();
+    var PaymentObject = {
+      Id : transId,
+      UserId : Number(this.thisUser),
+      ProductId: this.ProdID,
+      Tenure: this.Tenure-1,
+      AmountPaid: this.Amount,
+      NextDate: new Date(),
+      TimeStamp: new Date() 
+    }
+  
+    this.transServ.ServiceMethodPutTransactionDetails(transId,PaymentObject).subscribe();
     this.AckMessage="Payment Successfully Done";
   }
 
@@ -81,8 +100,8 @@ export class PaymentFormComponent implements OnInit {
       this.AccountNo = this.userObj.AccountNumber;
     });
     this.cardService.ServiceMethodGetCardDetail(Number(this.thisUser)).subscribe(data=>{
-      this.cardService = data;
-      this.CardType = this.cardObj.CType; 
+      this.cardObj = data;
+      this.CardType = this.cardObj.Ctype; 
       this.CreditsLeft = this.cardObj.CreditLeft
     });
     this.service2.ServiceMethodGetProductByID(this.ProdID).subscribe(data=>{
@@ -91,6 +110,11 @@ export class PaymentFormComponent implements OnInit {
     });
   }
 
+  getTransactionDetails(){
+    this.transServ.ServiceMethodGetTransactionHistories().subscribe(data=>{
+      this.allTransactions=data;
+    })
+  }
   // dateNow(){
   //   this.date=new Date();
   //   this.latestDate =this.datepipe.transform(this.date, 'yyyy-MM-dd');   

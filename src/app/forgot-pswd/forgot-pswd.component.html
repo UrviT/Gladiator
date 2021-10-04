@@ -1,0 +1,41 @@
+<div class="topnav">
+    <div class="topnav-centered">
+        <h1 class="active">EMI-CARD</h1>
+    </div>
+    <div class="topnav-right">
+        <a href="Register">Register</a>
+        <a href="Login">Login</a>
+
+    </div>
+
+</div>
+
+<div class="contain">
+    <div class="container">
+
+        <h2><b>ForgotPassword</b></h2><br>
+        <div class="form-group">
+            <label for="name">
+                <h5><b>UserName</b></h5>
+            </label><br>
+
+            <input type="text" placeholder="Enter UserName" size="2" name="UserName" required
+                [(ngModel)]="UserName"><br>
+        </div>
+        <div class="form-group">
+            <label for="Password" class="">
+                <h5><b>Email-Id</b></h5>
+            </label><br>
+
+            <input type="password" placeholder="Enter EmailId" name="Password" required [(ngModel)]="Email"><br><br>
+        </div>
+        <div>
+            <button (click)="ForgotPassword()" class="button"> Get Password</button> <br><br><br>
+
+
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>

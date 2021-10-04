@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { TransactionHistories } from '../Model/TransactionHistories';
 import { LinkAPIService } from './link-api.service';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { LinkAPIService } from './link-api.service';
 })
 export class TransactionsService {
 
-  readonly APIUrl= this.linkService.getLink()+"TransactionHistories/";
+  readonly APIUrl= this.linkService.getLink()+"TransactionHistories";
   constructor(private http : HttpClient, private linkService:LinkAPIService) { }
 
   ServiceMethodGetTransactionHistories():Observable<any>{
@@ -18,4 +19,13 @@ export class TransactionsService {
   ServiceMethodGetTransactionHistory(id:number):Observable<any>{
     return this.http.get(this.APIUrl+"/"+id);
   }
+
+  ServiceMethodPutTransactionDetails(id:number,transObj:TransactionHistories){
+    return this.http.put(`${this.APIUrl}/${id}`,transObj);
+  }
+
+  ServiceMethodPostTransactionDetails(transObj:TransactionHistories):Observable<any>{
+    return this.http.post(this.APIUrl,transObj);
+  }
+
 }

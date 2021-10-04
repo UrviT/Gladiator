@@ -62,7 +62,7 @@
             <!-- <br> -->
             <h5 style="text-align: center;">EMI starts at {{SelectedProduct.Cost/tenure | number:'.2-3'}}</h5>
             <div>
-                <button type="button" (click)="paymentRedirect(id,SelectedProduct.Cost/tenure)" class="btn btn-success">Pay now</button>
+                <button type="button" (click)="paymentRedirect(id,(SelectedProduct.Cost/tenure))" class="btn btn-success">Pay now</button>
             </div>
             <br>
         </div>

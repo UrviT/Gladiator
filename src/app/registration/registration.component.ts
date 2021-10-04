@@ -35,7 +35,7 @@ export class RegistrationComponent implements OnInit {
 
   RegisterCustomer() {
     alert(sessionStorage.getItem('UserId'))
-    this.AckMessage = 'In the function';
+    // this.AckMessage = 'In the function';
     var CustomerObject = {
       Id: 0,
       FirstName: this.FirstName.trim(),
