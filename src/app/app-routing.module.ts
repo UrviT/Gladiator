@@ -21,7 +21,7 @@ const routes: Routes = [
   { path:'Login', component: LoginComponent },
   { path:'ForgotPSWD', component: ForgotPSWDComponent },
   // { path:'Index', component: IndexpageComponent },
-  { path:'**', component: IndexpageComponent }
+  // { path:'**', component: IndexpageComponent }
 ];
 
 @NgModule({

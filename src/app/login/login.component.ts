@@ -9,7 +9,7 @@ import { LoginService } from "../Service/login.service";
 })
 export class LoginComponent implements OnInit {
 
-  EmailId: string = '';
+  EmailID: string = '';
   Password: string = '';
 
   AckMessage: string = '';
@@ -20,24 +20,25 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private service: LoginService) { }
 
   ngOnInit(): void {
+    this.GetDetails()
   }
   LoginUser() {
     this.AckMessage = "Login Entered";
 
     var CustomerObject = {
-      AccountID: 0,
-      FirstName: '',
-      LastName:'',
-      Email: this.EmailId.trim(),
+      id: 0,
+      firstName: '',
+      lastName:'',
+      emailId: this.EmailID.trim(),
       // UserName: this.UserName.trim(),
-      Password: this.Password.trim(),
-      MobileNo: '',
-      Address: '',
+      password: this.Password.trim(),
+      mobileNumber: '',
+      address: '',
       // CardType: '',
-      Bank: '',
-      AccountNo: '',
-      IFSC: '',
-      ActivattionStatus: 0
+      bankNumber: '',
+      accountNo: '',
+      ifscCode: '',
+      activationStatus: 0
     };
 
     this.service.ServiceMethodUserLogin(CustomerObject)
@@ -50,13 +51,14 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.router.navigate(['root']);
         this.message = "Login Sucessfully"
-
-      },
+        this.router.navigateByUrl("Products")      },
         error => {
           this.message = "Invalid User"
         });
 
     this.Result = "Sesssion successfully created with Email ID";
+    // 
+
   }
   GetDetails() {
     this.service.ServiceMethodLoginValidity().subscribe(data => {

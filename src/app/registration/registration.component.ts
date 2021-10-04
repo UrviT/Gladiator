@@ -84,7 +84,8 @@ export class RegistrationComponent implements OnInit {
     }
     this.service.ServiceMethodCardRegistration(CardObject).subscribe();
     this.AckMessage = "Card created Sucessfully ";
-    this.router.navigateByUrl("/Products")
+    // this.router.navigateByUrl("/Products")
+    this.router.navigateByUrl("Login")
   }
 
   // foo(){

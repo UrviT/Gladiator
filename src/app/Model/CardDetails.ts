@@ -1,8 +1,16 @@
 
 export class CardDetails{
-    CardId !:number;
-    UserId !:number;
-    Ctype !: string;
-    CreditLeft !: number;
-    ToBePaid !:number;
+    id !:number;
+    userId !:number;
+    ctype !: string;
+    creditLeft !: number;
+    toBePaid !:number;
 }
+
+// {
+//     "id": 0,
+//     "userId": 0,
+//     "ctype": "string",
+//     "creditLeft": 0,
+//     "toBePaid": 0
+//   }

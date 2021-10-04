@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
 import {CardDetails} from '../Model/CardDetails';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs';
 import { LinkAPIService } from './link-api.service';
+
+const httpOptions={
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json' 
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +29,10 @@ export class CardService {
 
   ServiceMethodDeleteCard(id:number):Observable<any>{
     return this.http.delete(this.APIUrl+"/"+String(id));
+  }
+
+  ServiceMethodPutCardDetails(id:number, cardobj:CardDetails){
+    return this.http.put<CardDetails>(this.APIUrl+"/"+String(id),cardobj,httpOptions);
   }
 
 }

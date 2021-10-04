@@ -1,5 +1,6 @@
 <div>
-    {{ProdID }} {{Amount}} {{Tenure}}
+    <!-- {{ProdID }} {{Amount}} {{Tenure}}  -->
+    ProdName: {{ProdName}}
 </div>
 <div class="container">
     <div class='row'>
@@ -26,11 +27,11 @@
                     <input class='form-control' size='4' type='text' required id="EmailId"
                         [value]="EmailId" disabled>
                 </div>
-                <div class='col-xs-12 form-group required'>
+                <!-- <div class='col-xs-12 form-group required'>
                     <label class='control-label'>Mobile No.</label>
                     <input class='form-control' size='4' type='text' required id="MobileNo"
                         [value]="MobileNo" disabled>
-                </div>
+                </div> -->
             </div>
             <div class='form-row'>
                 <div class='col-xs-12 form-group NextInstallment required'>
@@ -43,22 +44,22 @@
                 <div class='col-xs-12 form-group InstallmentAmt required'>
                     <label class='control-label'>Product Name</label>
                     <input autocomplete='off' class='form-control' size='4' type='text' required
-                        id="ProductN" [value]="ProductName" disabled>
+                        id="ProductN" [value]="ProdName" disabled>
                 </div>
                 <!-- <div class='col-xs-12 form-group Date required'>
                     <label class='control-label'>Product Details</label>
                     <input autocomplete='off' class='form-control' size='4' type='text' required name={{ProductDetails}}
                         id="ProducD" value="Wireless" disabled>
                 </div> -->
-                <div class='col-xs-12 form-group Date required'>
+                <!-- <div class='col-xs-12 form-group Date required'>
                     <label class='control-label'>Card Type</label>
                     <input autocomplete='off' class='form-control' size='4' type='text' required
                         id="CardT" [value]="CardType" disabled>
-                </div>
+                </div> -->
                 <div class='col-xs-12 form-group Date required'>
                     <label class='control-label'>Amount to be paid</label>
                     <input autocomplete='off' class='form-control' size='4' type='text' required
-                        id="InstallmentAmt" [value]="InstallmentAmt" disabled>
+                        id="InstallmentAmt" [value]="Amount" disabled>
                 </div>
                 <!-- <div class='col-xs-12 form-group Date required'>
                     <label class='control-label'>Next Installment </label>
@@ -70,14 +71,20 @@
                         <input type="checkbox" required> Confirm Details before submission
                     </div>
                     <div class='col-md-6 form-group'>
-                        <button *ngIf="postPut=='post'" (click)="Payment()" class='form-control btn btn-primary submit-button' type='submit'>Pay
+                        <span *ngIf="ActivationStatus!=2; then noPayment ;else yesPayment;"></span>
+                            <ng-template #yesPayment>
+                                <button *ngIf="postPut=='post'" (click)="Payment()" class='form-control btn btn-primary submit-button' type='submit'>Pay
                             »</button>
-                        <div *ngFor="let transaction of allTransactions">
-                            <div *ngIf="transaction.UserId==thisUser && transaction.ProductId==ProdID" ></div>
-                            <button *ngIf="postPut=='put'" (click)="PaymentUpdate(transaction.Id)" class='form-control btn btn-primary submit-button' type='submit'>Pay
+                            <div *ngFor="let transaction of allTransactions">
+                                <div *ngIf="transaction.UserId==thisUser && transaction.ProductId==ProdID" ></div>
+                                    <button *ngIf="postPut=='put'" (click)="PaymentUpdate(transaction.Id)" class='form-control btn btn-primary submit-button' type='submit'>Pay
                                 »</button>
-                        </div>
-                        
+                            </div>
+                            </ng-template>
+                            <ng-template #noPayment>
+                                <button disabled (click)="giveAlert()" class='form-control btn btn-primary submit-button' type='submit'>Pay
+                                    »</button>
+                            </ng-template>
                     </div>
                 </div>
 

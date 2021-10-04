@@ -31,6 +31,10 @@ export class DashboardComponent implements OnInit {
   showTable = 0;
   showTableStatus = 1;
 
+  today = new Date()
+  currentDate:any;
+  // isTodayNextInsDate:boolean = true;
+
   constructor(public service:UserService , public router : Router ,public cardserv:CardService,
     public transerv : TransactionsService, private prodServ:ProductssService , public prodservice:ProductService) { }
 
@@ -42,7 +46,12 @@ export class DashboardComponent implements OnInit {
     this.getProducts();
     this.getTransactions();
     this.onClick();
-    //this.update(5);
+
+    let dd = String(this.today.getDate()).padStart(2, '0')
+    let mm = String(this.today.getMonth() + 1).padStart(2, '0')
+    let yyyy = String(this.today.getFullYear());
+    this.currentDate = yyyy + '-' + mm + '-' + dd;
+
   }
 
   // getById(id: number) {
@@ -113,8 +122,8 @@ export class DashboardComponent implements OnInit {
     // }
   }
 
-  payInstallment(id:any,cost:any,tenure:any){
-    this.prodServ.ServiceMethodSetTransactionDetails('put',id,cost,tenure)
+  payInstallment(id:any,pname:string,cost:any,tenure:any){
+    this.prodServ.ServiceMethodSetTransactionDetails('put',id,pname,cost,tenure)
     this.router.navigate(['Payment']);
   }
 }

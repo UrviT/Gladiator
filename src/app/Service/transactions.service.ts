@@ -1,8 +1,14 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TransactionHistories } from '../Model/TransactionHistories';
 import { LinkAPIService } from './link-api.service';
+
+const httpOptions={
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json' 
+  })
+};
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +27,15 @@ export class TransactionsService {
   }
 
   ServiceMethodPutTransactionDetails(id:number,transObj:TransactionHistories){
-    return this.http.put(`${this.APIUrl}/${id}`,transObj);
+    return this.http.put<TransactionHistories>(this.APIUrl+"/"+String(id),transObj,httpOptions);
   }
 
+  // ServiceMethodPostTransactionDetails(transObj:TransactionHistories):Observable<any>{
+  //   return this.http.post(this.APIUrl,transObj);
+  // }
+
   ServiceMethodPostTransactionDetails(transObj:TransactionHistories):Observable<any>{
-    return this.http.post(this.APIUrl,transObj);
+    return this.http.post<TransactionHistories>(this.APIUrl,transObj, httpOptions);
   }
 
 }

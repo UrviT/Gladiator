@@ -14,6 +14,7 @@ export class ProductssService {
   amount!: number;
   tenure!: number;
   method!: string;
+  pname!: string;
 
   constructor(private http:HttpClient) { }
 
@@ -25,14 +26,31 @@ export class ProductssService {
     return this.http.get('http://localhost:26681/api/Products/'+String(id));
   }
 
-  ServiceMethodGetTransactionDetails(){
-    return (this.method, this.pid, this.amount, this.tenure)
+  // ServiceMethodGetTransactionDetails(){
+  //   return (this.method, this.pid, this.amount, this.tenure)
+  // }
+  ServiceMethodGetMethodName(){
+    return this.method
   }
-  ServiceMethodSetTransactionDetails(methodtype:string,pid:number,amt:number, tenure:number){
+  ServiceMethodGetSelectedPid(){
+    return this.pid
+  }
+  ServiceMethodGetAmount(){
+    return this.amount
+  }
+  ServiceMethodGetTenure(){
+    return this.tenure
+  }
+  ServiceMethodGetPname(){
+    return this.pname;
+  }
+
+  ServiceMethodSetTransactionDetails(methodtype:string,pid:number, pname:string,amt:number, tenure:number){
     this.method = methodtype;
     this.pid = pid;
     this.amount = amt;
-    this.tenure = tenure;    
+    this.tenure = tenure; 
+    this.pname = pname;   
   }
- 
+
 }

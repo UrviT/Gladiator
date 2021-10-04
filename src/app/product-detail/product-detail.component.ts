@@ -19,6 +19,7 @@ export class ProductDetailComponent implements OnInit {
   //   ImgPath: string
   // }
   tenure!:number 
+  prodName!:string;
 
   constructor( private service:ProductssService, private route:ActivatedRoute, private routing:Router) {
     // this.id = Number(this.route.snapshot.paramMap.get('id'));
@@ -32,7 +33,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   paymentRedirect(prodID:number, amount:number){
-    this.service.ServiceMethodSetTransactionDetails('post',this.id,amount,this.tenure);
+    this.service.ServiceMethodSetTransactionDetails('post',this.id, this.SelectedProduct.Pname,amount,this.tenure);
     this.routing.navigateByUrl("/Payment");
   }
 }
