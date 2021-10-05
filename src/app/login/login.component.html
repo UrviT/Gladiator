@@ -1,14 +1,17 @@
 <div class="topnav">
+    <div class="topnav-left">
+      <a routerLink="/Index">Home</a>
+    </div>
     <div class="topnav-centered">
-        <h1 class="active">EMI-CARD</h1>
+        <h1 routerLink="/Index" class="active"> Home</h1>
     </div>
     <div class="topnav-right">
-        <a href="register">Register</a>
-        <a href="path">Login</a>
-
+      <a routerLink="/Dashboard">Dasboard</a>
+      <a routerLink='/Login'>Logout</a>
     </div>
-
 </div>
+  <!-- <div style="width: fit-content; height: 70px;"></div> -->
+  
 
 <div class="container">
     <h1 text-align="center"><b>Login</b></h1><br>
@@ -24,8 +27,8 @@
     <div class="cont">
         <input type="password" placeholder="Enter Password" name="Password" required [(ngModel)]="Password"><br><br>
         <button (click)="LoginUser()" class="btn btn-primary"> Register</button> <br><br><br>
-        <a routerLink="Register"><b>New User</b></a>
-        <a routerLink="ForgotPSWD"><b>Forgot Password</b></a>
+        <a routerLink="/Register"><b>New User</b></a>
+        <a routerLink="/ForgotPSWD"><b>Forgot Password</b></a>
     </div>
 
     <h1>{{message}}</h1>

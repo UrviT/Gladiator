@@ -1,6 +1,19 @@
+<div class="topnav">
+    <div class="topnav-left">
+      <a routerLink="/Index">Home</a>
+    </div>
+    <div class="topnav-centered">
+        <h1 routerLink="/Index" class="active"> Home</h1>
+    </div>
+    <div class="topnav-right">
+      <a routerLink="/Dashboard">Dashboard</a>
+      <a routerLink='/Login'>Logout</a>
+    </div>
+</div>
+
 <div>
     <!-- {{ProdID }} {{Amount}} {{Tenure}}  -->
-    ProdName: {{ProdName}}
+    <!-- ProdName: {{ProdName}} -->
 </div>
 <div class="container">
     <div class='row'>
@@ -82,7 +95,7 @@
                             </div>
                             </ng-template>
                             <ng-template #noPayment>
-                                <button disabled (click)="giveAlert()" class='form-control btn btn-primary submit-button' type='submit'>Pay
+                                <button (click)="giveAlert()" class='form-control btn btn-primary submit-button' type='submit'>Pay
                                     »</button>
                             </ng-template>
                     </div>

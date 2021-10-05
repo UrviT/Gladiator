@@ -8,9 +8,11 @@ import { CardService } from '../Service/card.service';
 import { TransactionsService } from '../Service/transactions.service';
 import { Products } from '../Model/Products';
 import { TransactionHistories } from '../Model/TransactionHistories';
+import {TransHistory} from '../Model/TransHistory'
 import { CardDetails } from '../Model/CardDetails';
 import { Users } from '../Model/Users';
 import { ProductssService } from '../productss.service';
+import {CardsDetails} from '../Model/CardsDetails'
 
 @Component({
   selector: 'app-dashboard',
@@ -18,14 +20,16 @@ import { ProductssService } from '../productss.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+  
 
-  cards: CardDetails[] = [];
+  cards: CardsDetails[] = [];
   userCard: any={};
   users: Users[] = [];
   user2: any = {};  //Create the variables here
   status !: number;
   products: Products[] = [];
   trans: TransactionHistories[] = [];
+  trans1: TransHistory[]=[];
   // idcard = 5;//Variable To Store Session Storage
   idcard = Number(sessionStorage.getItem('UserId'));//Variable To Store Session Storage
   showTable = 0;
@@ -46,7 +50,8 @@ export class DashboardComponent implements OnInit {
     this.getProducts();
     this.getTransactions();
     this.onClick();
-
+    this.getTransactions1()
+    alert(this.idcard);
     let dd = String(this.today.getDate()).padStart(2, '0')
     let mm = String(this.today.getMonth() + 1).padStart(2, '0')
     let yyyy = String(this.today.getFullYear());
@@ -100,6 +105,11 @@ export class DashboardComponent implements OnInit {
   getTransactions() {
     this.transerv.ServiceMethodGetTransactionHistories().subscribe(data => {
       this.trans = data;
+    })
+  }
+  getTransactions1() {
+    this.transerv.ServiceMethodGetTransactionHistories().subscribe(data => {
+      this.trans1 = data;
     })
   }
 

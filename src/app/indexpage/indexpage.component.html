@@ -1,11 +1,26 @@
+<div class="topnav">
+    <div class="topnav-left">
+      <a routerLink="/Index">Home</a>
+    </div>
+    <div class="topnav-centered">
+      <h1 routerLink="/Index" class="active"> Home</h1>
+    </div>
+    <div class="topnav-right">
+      <a routerLink="/Register">Register</a>
+      <a routerLink='/Login'>Log in</a>
+    </div>
+</div>
+<div style="width: fit-content; height: 70px;"></div>
+  
+
 <!-- {{ProductList}} -->
 <div class="container">
     <div class="row">
         <div class="col-md-12 py-3">
-            <h2 class="pb-2">Not a sale</h2>
+            <h2 class="pb-2">Browse products</h2>
             <ngb-carousel *ngIf="ProductList">
                 <ng-template ngbSlide *ngFor="let event of ProductList">
-                    <div routerLink="Register">
+                    <div routerLink="/Register">
                         <img src="assets/images/{{event.ImgPath}}" alt="Random slide">
                         <div style="width: 40%; text-align: right;" class="carousel-caption">
                             <h3 style="color:black">{{ event.Pname }}</h3>

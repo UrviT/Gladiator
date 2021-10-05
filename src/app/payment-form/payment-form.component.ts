@@ -1,6 +1,7 @@
 // import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TransactionHistories } from '../Model/TransactionHistories';
 import { PaymentService } from '../payment.service';
 import { ProductssService } from '../productss.service';
 import { CardService } from '../Service/card.service';
@@ -53,6 +54,7 @@ export class PaymentFormComponent implements OnInit {
   year:any;
   today:any=new Date()
 
+  thObj!: TransactionHistories;
   motnhNumber:any =[{'Jan':1},
               {'Feb':2},
               {'Mar':3},
@@ -94,10 +96,13 @@ export class PaymentFormComponent implements OnInit {
 
     let dd=String(this.today.getDate()).padStart(2,'0')
     let mm = String(this.today.getMonth()+1).padStart(2,'0')
+    let mm1 = String(this.today.getMonth()+2).padStart(2,'0')
     let y=String(this.today.getFullYear());
 
-    let nextDate = y+'-'+mm+'-'+dd;
-    console.log(nextDate)
+    let currDate = y+'-'+mm+'-'+dd;
+    let nextDate = y+'-'+mm1+'-'+dd;
+
+    // console.log(nextDate)
 
     // this.datetime = this.year+"-"+this.month+"-"+this.date;
     // let time :any = this.datetime.toString().substring(4,15)
@@ -110,7 +115,7 @@ export class PaymentFormComponent implements OnInit {
       tenure: this.Tenure-1,
       amountPaid: this.Amount,
       nextDate: nextDate,
-      timestamp: nextDate
+      timestamp: currDate
     }
   
     this.transServ.ServiceMethodPostTransactionDetails(PaymentObject).subscribe();
@@ -137,22 +142,56 @@ export class PaymentFormComponent implements OnInit {
   
   PaymentUpdate(transId: number){
     // this.dateNow();
-    this.datetime = new Date();
+    // this.datetime = new Date();
     //NewNextDate = nextDate:2021-12-08(+1 month)
+    // let time :any = this.datetime.toString().substring(4,15)
+    let dd=String(this.today.getDate()).padStart(2,'0')
+    let mm = String(this.today.getMonth()+1).padStart(2,'0')
+    let mm1 = String(this.today.getMonth()+2).padStart(2,'0')
+    let y=String(this.today.getFullYear());
 
-    let time :any = this.datetime.toString().substring(4,15)
+    let currDate = y+'-'+mm+'-'+dd;
+    let nextDate = y+'-'+mm1+'-'+dd;
 
-    var PaymentObject = {
-      id : transId,
-      userId : Number(this.thisUser),
-      productId: this.ProdID,
-      tenure: this.Tenure-1,
-      amountPaid: this.Amount,
-      nextDate: time,
-      timestamp: time
-    }
-    this.transServ.ServiceMethodPutTransactionDetails(transId,PaymentObject).subscribe();
+    this.transServ.ServiceMethodGetTransactionHistory(transId).subscribe(data=>{
+      this.thObj = data;
+    })
+
+    this.thObj.tenure = this.thObj.tenure-1
+    this.thObj.timestamp = this.thObj.nextDate
+    this.thObj.nextDate = nextDate
+
+    // var PaymentObject = {
+    //   id : transId,
+    //   userId : Number(this.thisUser),
+    //   productId: this.ProdID,
+    //   tenure: this.Tenure-1,
+    //   amountPaid: this.Amount,
+    //   nextDate: time,
+    //   timestamp: time
+    // }
+    this.transServ.ServiceMethodPutTransactionDetails(transId,this.thObj).subscribe();
     this.AckMessage="Payment Successfully Done";
+
+    if(this.thObj.tenure==0){
+      let tobepaid = 0;
+    if (this.CardType=='Gold'){
+      this.totalMoney=50000
+    }
+    else if (this.CardType=='Titanium'){
+      this.totalMoney=100000
+    }
+    //deduct money from card
+    var cardObj={
+      id : Number(this.thisUser),
+      userId : Number(this.thisUser),
+      ctype : this.CardType,
+      creditLeft : this.CreditsLeft+this.PCost,
+      toBePaid : (this.totalMoney-this.CreditsLeft)
+    }
+    this.cardService.ServiceMethodPutCardDetails(Number(this.thisUser),cardObj).subscribe();
+
+    }
   //if the Tenure is 1 (this.Tenure-1==0)(means this is the last payment), then update the card details along with 
   //details in transactions table, creditLeft=creditLeft+productCost
 }

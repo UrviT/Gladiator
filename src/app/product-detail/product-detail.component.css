@@ -24,3 +24,48 @@
     padding-top: 10%;
     text-align: center;    
 }
+
+.topnav-centered h1 {
+    float: none;
+    position: absolute;
+    padding-top: 20px;
+    left: 50%;
+    transform: translate(-100%, -100%);
+  }
+  
+  .topnav-right {
+    float: right;
+    padding-bottom: 50px;
+    transform: translate(-10%, -70%);
+  }
+  .topnav h1.active {
+  
+    color: white;
+  }
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  .topnav {
+    position: relative;
+    overflow: hidden;
+    background-color: #333;
+    height: 80px;
+  }
+  
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    
+    padding-right: 50px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  .topnav-centered h1 {
+    position: relative;
+    top: 0;
+    left: 0;
+  bottom: 2;
+    transform: none;
+  }

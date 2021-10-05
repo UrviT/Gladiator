@@ -1,13 +1,29 @@
+<!-- navbar -->
+<div class="topnav">
+  <div class="topnav-left">
+    <a routerLink="/Index">Home</a>
+  </div>
+  <div class="topnav-centered">
+    <h1 routerLink="/Index" class="active"> Home</h1>
+  </div>
+  <div class="topnav-right">
+    <a routerLink="/Products">Buy</a>
+    <a routerLink='/Login'>Logout</a>
+  </div>
+</div>
+<div style="width: fit-content; height: 70px;"></div>
+
+
 <div>
   <div class="card">
     <div class="card text-dark bg-light ml-25" style="width: 26%;">
       <div class="card-body">
         <div *ngFor="let i of cards">
-          <div *ngIf="i.userId==idcard">
+          <div *ngIf="i.UserId==idcard">
             <p class="card-text"> CARD NUMBER : {{idcard}}</p>
             <p class="card-text"> NAME : {{user2.FirstName}}</p>
             <!-- <p class="card-text"> VALID TILL : </p> -->
-            <p class="card-text"> CARD TYPE : {{i.ctype}}</p>
+            <p class="card-text"> CARD TYPE : {{i.Ctype}}</p>
           </div>
         </div>
       </div>
@@ -20,10 +36,10 @@
       <!-- <ng-template #notactivated> -->
       <div *ngIf="status==0">
         <div class="card-footer bg-danger border-danger text-center">NOT ACTIVATED</div>
-          <button (click)="feePaid(idcard)" class="btn btn-primary" style="width: 20%; align-self: center;">Pay Joining
-            fee</button>
+        <button (click)="feePaid(idcard)" class="btn btn-primary" style="align-self: center;">Pay Joining
+          fee</button>
       </div>
-      
+
       <!-- </ng-template> -->
       <!-- <ng-template #activated> -->
       <div *ngIf="status==2" class="card-footer bg-success border-success text-center">ACTIVATED</div>
@@ -36,17 +52,17 @@
   <div class="card bg-light text-dark ml-5" style="width: 25%;">
     <div class="card-body">
       <div *ngFor="let i of cards">
-        <span *ngIf="i.userId==idcard">
-          <span *ngIf="i.ctype=='Gold'; then gold ;else titanium;"></span>
+        <span *ngIf="i.UserId==idcard">
+          <span *ngIf="i.Ctype=='Gold'; then gold ;else titanium;"></span>
           <ng-template #gold>
             <p class="card-text" style="font-size: 22px;">Total Credits : 50000</p>
-            <p class="card-text" style="font-size: 22px;">Credits Used : {{50000-i.creditLeft}}</p>
-            <p class="card-text" style="font-size: 22px;">Remaining Credits : {{i.creditLeft}}</p>
+            <p class="card-text" style="font-size: 22px;">Credits Used : {{50000-i.CreditLeft}}</p>
+            <p class="card-text" style="font-size: 22px;">Remaining Credits : {{i.CreditLeft}}</p>
           </ng-template>
           <ng-template #titanium>
             <p class="card-text" style="font-size: 22px;">Total Credits : 100000</p>
-            <p class="card-text" style="font-size: 22px;">Credits Used : {{100000-i.creditLeft}}</p>
-            <p class="card-text" style="font-size: 22px;">Remaining Credits : {{i.creditLeft}}</p>
+            <p class="card-text" style="font-size: 22px;">Credits Used : {{100000-i.CreditLeft}}</p>
+            <p class="card-text" style="font-size: 22px;">Remaining Credits : {{i.CreditLeft}}</p>
           </ng-template>
         </span>
       </div>
@@ -58,54 +74,76 @@
       <h5>PRODUCTS PURCHASED</h5>
     </div>
     <div class="card bg-light text-light ml-5 mt-3 mr-5 mb-3">
-      <div *ngFor="let i of trans">
-        <div *ngIf="i.tenure>=1">
-          <div *ngFor="let j of products">
-            <div *ngIf="i.userId==idcard && i.productId==j.Id">
-              <div class="card-body">
-                <p class="card-text" style="font-size: 22px;">Product Name : {{j.Pname}}</p>
-                <p class="card-text" style="font-size: 22px;">Amount : {{j.Cost}}</p>
-                <!-- <p class="card-text" style="font-size: 22px;">Paid : {{i.amountPaid}}</p> -->
-                <p class="card-text" style="font-size: 22px;">To be paid on : {{i.nextDate}}</p>
-                <p class="card-text" style="font-size: 22px;">Balance : {{j.Cost-i.amountPaid}} </p>
-                <p *ngIf="i.nextDate < currentDate">
-                  <button disabled class="btn btn-primary" (click)="payInstallment(j.Id,j.Pname,j.Cost,i.tenure-1)">Pay
-                    Installment</button></p>
-                <p *ngIf="i.nextDate == currentDate">
-                  <button class="btn btn-primary" (click)="payInstallment(j.Id,j.Pname,j.Cost,i.tenure-1)">Pay
-                        Installment</button></p>
+      <!-- <div *ngIf="i.Tenure>=1;then tobepaid; else paid;"></div> -->
+        <div class="table text-center table-bordered">
+          <thead>
+            <tr>
+              <th width="20%">Product Name :</th>
+              <th width="20%">Amount :</th>
+              <th width="20%">Last Date :</th>
+              <th width="20%">Balance : </th>
+              <th width="20%">Action</th>
+            </tr>
+          </thead>
+          <div *ngFor="let i of trans1">
+            <div *ngIf="i.Tenure>=1;">
+
+            <div *ngFor="let j of products">
+              <div *ngIf="i.UserId==idcard && i.ProductId==j.Id">
+                <div class="thead-dark">
+                  <tbody>
+                    <td width="20%">{{j.Pname}}</td>
+                    <td width="20%">{{i.AmountPaid}}</td>
+                    <td width="20%">{{i.NextDate}}</td>
+                    <td width="20%">{{i.Tenure * i.AmountPaid}}</td>
+                    <td width="20%">
+                      <div *ngIf="i.NextDate < currentDate">
+                        <button disabled class="btn btn-primary"
+                          (click)="payInstallment(j.Id,j.Pname,j.Cost,i.Tenure-1)">Pay
+                          Installment</button>
+                      </div>
+                      <div *ngIf="i.NextDate == currentDate">
+                        <button class="btn btn-primary" (click)="payInstallment(j.Id,j.Pname,j.Cost,i.Tenure-1)">Pay
+                          Installment</button>
+                      </div>
+                    </td>
+                  </tbody>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
-<button type="button" class="btn btn-dark btn-lg btn-block mb-3" (click)="onClick()">Transactions</button>
-<div *ngIf="showTable>1">
-  <table class="table text-center table-bordered">
-    <thead class="thead-dark">
-      <tr>
-        <th width="33.33%">PRODUCT</th>
-        <th width="33.33%">DATE</th>
-        <th width="33.33%">AMOUNT PAID</th>
-      </tr>
-    </thead>
-  </table>
-  <div *ngFor="let i of trans">
-    <div *ngFor="let j of products">
-      <div class="table" *ngIf="i.userId==idcard && i.productId==j.Id">
+        <!-- <ng-template #tobepaid> -->
+
+        <!-- </ng-template>
+        <ng-template #paid> -->
         <table class="table text-center table-bordered">
-          <tbody>
+          <thead class="thead-dark">
             <tr>
-              <td width="33.33%">{{j.Pname}}</td>
-              <td width="33.33%">{{i.nextDate}}</td>
-              <td width="33.33%">{{i.amountPaid}}</td>
+              <th width="33.33%">PRODUCT</th>
+              <th width="33.33%">DATE</th>
+              <th width="33.33%">COST OF PRODUCT</th>
             </tr>
-          </tbody>
+          </thead>
         </table>
+        <div *ngFor="let i of trans1">
+          <div *ngFor="let j of products">
+            <div class="table" *ngIf="i.UserId==idcard && i.ProductId==j.Id">
+              <table class="table text-center table-bordered">
+                <tbody>
+                  <tr>
+                    <td width="33.33%">{{j.Pname}}</td>
+                    <td width="33.33%">{{i.Timestamp}}</td>
+                    <td width="33.33%">{{j.Cost}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
+      <!-- </ng-template> -->
     </div>
   </div>
 </div>

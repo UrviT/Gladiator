@@ -34,7 +34,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   RegisterCustomer() {
-    alert(sessionStorage.getItem('UserId'))
+    // alert(sessionStorage.getItem('UserId'))
     // this.AckMessage = 'In the function';
     var CustomerObject = {
       Id: 0,
@@ -76,16 +76,16 @@ export class RegistrationComponent implements OnInit {
   RegisterCard() {
     alert(sessionStorage.getItem('UserId'))
     var CardObject = {
-      Id: 0,
-      UserId: sessionStorage.getItem('UserId'),
-      Ctype: this.CardType.trim(),
-      CreditLeft: this.Credits,
-      ToBePaid: 0,
+      id: 0,
+      userId: sessionStorage.getItem('UserId'),
+      ctype: this.CardType.trim(),
+      creditLeft: this.Credits,
+      toBePaid: 0,
     }
     this.service.ServiceMethodCardRegistration(CardObject).subscribe();
     this.AckMessage = "Card created Sucessfully ";
     // this.router.navigateByUrl("/Products")
-    this.router.navigateByUrl("Login")
+    this.router.navigate(['../Login'])
   }
 
   // foo(){
